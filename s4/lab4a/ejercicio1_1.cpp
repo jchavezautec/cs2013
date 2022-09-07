@@ -9,12 +9,12 @@ T suma(T a, T b){
 
 template<class T>
 char suma(char a, T b){
-    return a + (char)b;
+    return a + b;
 }
 
 template<class T>
 T suma(T a, char b){
-    return a + (int)b;
+    return a + b;
 }
 
 char suma(char a, char b){
