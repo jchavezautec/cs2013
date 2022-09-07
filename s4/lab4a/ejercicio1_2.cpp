@@ -49,7 +49,7 @@ int main(){
         }
     }
 
-    // Primera matriz
+    // Segunda matriz
     // ================================
     float **r = new float *[filas];
 
