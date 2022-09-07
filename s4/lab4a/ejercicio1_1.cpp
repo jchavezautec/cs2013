@@ -7,6 +7,13 @@ T suma(T a, T b){
     return a + b;
 }
 
+/*
+template<class T1, class T2>
+T1 suma(T1 a, T2 b){
+    return a + b;
+}
+*/
+
 template<class T>
 char suma(char a, T b){
     return a + b;
