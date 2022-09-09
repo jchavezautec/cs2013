@@ -9,11 +9,7 @@ T Max(T a, T b){
 
 template<class T, class...Ts>
 T Max(T a, T b, Ts... args){
-    T m = a > b ? a: b;
-
-    if (sizeof...(args) > 0)
-        return Max(m, args...);
-    return m;
+    return Max(Max(a,b),args...);
 }
 
 int main(){

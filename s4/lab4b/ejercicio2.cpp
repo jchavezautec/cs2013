@@ -5,7 +5,7 @@ using namespace std;
 
 template<class...Ts>
 float suma_de_cuadrados(Ts... args){
-    return ((args*args)+...);
+    return (pow(args,2)+...);
 }
 
 template<class...Ts>
