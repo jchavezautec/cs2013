@@ -18,7 +18,7 @@ int main(){
     cout << "================================" << endl;
    
     for (int e: lista)
-        cout << e << " ";
+        cout << e << " ";   
     cout<< endl;
 
 	forward_list<int>::iterator it = lista.begin();
