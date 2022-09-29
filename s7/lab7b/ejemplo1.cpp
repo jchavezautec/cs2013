@@ -12,8 +12,8 @@ void print_container(C& cont){
     cout << endl;
 }
 
-template<class It1, class It2>
-void print_container(It1 begin, It2 end){
+template<class It>
+void print_container(It begin, It end){
     for (auto it=begin; it!=end; it++)
         cout << *it << " ";
     cout << endl;
