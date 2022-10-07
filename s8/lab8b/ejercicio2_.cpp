@@ -23,16 +23,13 @@ void verificarSuma(vector<int> C){
 
 int main(){
     chrono::time_point<std::chrono::system_clock> t_inicio, t_final;
-
-    vector<int> A(100000000);
-    vector<int> B(100000000);
+    vector<int> A(100000000, 1);
+    vector<int> B(100000000, 2);
     vector<int> C(100000000);
+    
     vector<thread> vthreads;
     int n_threads = 4;
     //int n_threads = thread::hardware_concurrency();
-
-    generate(A.begin(), A.end(), [](){return 1;});
-    generate(B.begin(), B.end(), [](){return 2;});
 
     t_inicio = chrono::high_resolution_clock::now();
     
