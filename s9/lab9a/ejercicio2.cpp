@@ -49,7 +49,7 @@ int main(){
         vthreads[i].join();
     //dot_(A,B,res);
     t_final  = chrono::high_resolution_clock::now(); 
-    std::chrono::duration<int, std::milli> t = t_final - t_inicio;
+    std::chrono::duration<double, std::milli> t = t_final - t_inicio;
     cout << "Tiempo = " << t.count() << "ms" << endl;
     cout << "<A . B> = " << res << endl;
     assert(res == N);
