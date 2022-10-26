@@ -3,6 +3,10 @@ using namespace std;
  
 class Vehiculo {
 public:
+    /* 
+    Esta solo puede ser una clase base, no
+    se pueden crear instancias de esta clase 
+    */
     virtual void print() = 0;
 };
 class Moto: public Vehiculo {

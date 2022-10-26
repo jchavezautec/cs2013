@@ -2,7 +2,6 @@
 #define EMAILBUILDER_H
 
 #include <string>
-#include <sstream>
 #include "email.h"
 
 using namespace std;
