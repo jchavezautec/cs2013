@@ -41,7 +41,7 @@ public:
  
 int main()
 {
-    Cliente* ptr_cliente = new Cliente(1);
+    Cliente* pt r_cliente = new Cliente(1);
     Vehiculo* ptr_vehiculo = ptr_cliente->getVehiculo();
     ptr_vehiculo->print();
     return 0;
