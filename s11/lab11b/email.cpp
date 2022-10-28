@@ -2,7 +2,7 @@
 #include "emailbuilder.h"
 
 EmailBuilder Email::create(){
-    return EmailBuilder{};
+    return EmailBuilder();
 }
 
 std::ostream &operator<<(std::ostream& os, const Email& obj)
