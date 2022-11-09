@@ -65,22 +65,18 @@ class Pila{
 };
 
 int main(){
-    Pila pila;
-    pila.push(2);
-    cout << "Push(2)" << endl;
-    pila.push(1);
-    cout << "Push(1)" << endl;
-    cout << "Pop() = " << pila.pop() << endl;
-    pila.push(4);
-    cout << "Push(4)" << endl;
-    pila.push(3);
-    cout << "Push(3)" << endl;
-    cout << "Pop() = " << pila.pop() << endl;
-    cout << "Pop() = " << pila.pop() << endl;
-    pila.push(9);
-    cout << "Push(9)" << endl;
-    cout << "Pop() = " << pila.pop() << endl;
-    cout << "Pop() = " << pila.pop() << endl;
+   Pila pila;
+   pila.push(2);
+   cout << "Push(2)" << endl;
+   pila.push(4);
+   cout << "Push(4)" << endl;
+   pila.push(3);
+   cout << "Push(3)" << endl;
+   cout << "Pop() = " << pila.pop() << endl;
+   pila.push(9);
+   cout << "Push(9)" << endl;
+   cout << "Pop() = " << pila.pop() << endl;
+   cout << "Pop() = " << pila.pop() << endl;
 
-    return 0;
+   return 0;
 }
