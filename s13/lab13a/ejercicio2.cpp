@@ -33,5 +33,5 @@ int main(){
     delete n2;
     delete top; // delete n1
 
-    delete n1; // Error: double free
+    //delete n1; // Error: double free
 }
