@@ -27,7 +27,7 @@ int main(){
     Nodo* temp2 = new Nodo;
     temp2->_item = 5;
     temp2->_next = NULL;
-
+    
     back->_next = temp2;
     back = temp2;
 
