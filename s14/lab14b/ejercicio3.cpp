@@ -39,9 +39,9 @@ class Grafo{
         }
         void unir(char vertice1, char vertice2){
             if (padre[vertice1]==vertice1)
-                padre[vertice1] = padre[vertice2];
+                padre[vertice1] = vertice2;
             else
-                padre[vertice2] = padre[vertice1];
+                padre[vertice2] = vertice1;
         }
         void mostrar_padres(){
             cout << "Vertices: ";
