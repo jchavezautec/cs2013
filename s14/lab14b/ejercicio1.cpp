@@ -25,7 +25,7 @@ int main(){
     aristas.push_back(Arista('B','E',2));
     aristas.push_back(Arista('B','D',5));
     aristas.push_back(Arista('C','E',1));
-    aristas.push_back(Arista('D','A',5));
+    aristas.push_back(Arista('D','A',4));
     aristas.push_back(Arista('D','E',2));
     aristas.push_back(Arista('D','F',6));
     aristas.push_back(Arista('E','F',4));
