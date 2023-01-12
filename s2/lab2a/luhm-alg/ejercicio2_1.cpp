@@ -6,9 +6,9 @@ int main(){
     char digito;
     int checksum = 0;
 
-    cout << "Ingresar un numero de seis digitos: ";
+    cout << "Ingresar un numero de siete digitos: ";
     
-    for (int i=1; i <= 6; i++){
+    for (int i=1; i <= 7; i++){
         cin >> digito;
         checksum += digito - '0';
     }

@@ -94,21 +94,22 @@ class Grafo{
 
 int main(){
     Grafo G;
-    G.insertar_arista('A','C',4);
-    G.insertar_arista('A','D',7);
-    G.insertar_arista('C','D',11);
-    G.insertar_arista('C','E',20);
-    G.insertar_arista('C','F',9 );
-    G.insertar_arista('D','E',1);
-    G.insertar_arista('F','G',2);
-    G.insertar_arista('E','G',1);
-    G.insertar_arista('E','I',3);
-    G.insertar_arista('F','H',6);
-    G.insertar_arista('G','H',10);
-    G.insertar_arista('G','B',15);
-    G.insertar_arista('G','I',5);
-    G.insertar_arista('H','B',5);
-    G.insertar_arista('I','B',12);
+    G.insertar_arista('A','C',3);
+    G.insertar_arista('A','B',12);
+    G.insertar_arista('A','J',13);
+    G.insertar_arista('B','C',10);
+    G.insertar_arista('B','D',2 );
+    G.insertar_arista('B','H',4);
+    G.insertar_arista('B','I',25);
+    G.insertar_arista('C','J',5);
+    G.insertar_arista('C','D',7);
+    G.insertar_arista('D','H',20);
+    G.insertar_arista('E','J',9);
+    G.insertar_arista('E','F',11);
+    G.insertar_arista('F','G',15);
+    G.insertar_arista('F','H',14);
+    G.insertar_arista('G','H',6);
+    G.insertar_arista('H','I',1);
     G.print();
     G.dijkstra('A');
     G.print_dists();
