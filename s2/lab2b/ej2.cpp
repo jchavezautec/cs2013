@@ -76,16 +76,16 @@ void matrix::random(){
 }
 
 std::ostream& operator<<(std::ostream& os, matrix &M){
-    cout << endl;
+    os << endl;
     for (int i=0; i < M.get_rows(); i++){
-        cout << "| ";
+        os << "| ";
         for (int j=0; j < M.get_cols(); j++){
-            cout.width(4);
-            cout << M(i,j) << " ";
+            os.width(4);
+            os << M(i,j) << " ";
         }
-        cout.width(1);
-        cout << "|"<< endl;
+        os << "|"<< endl;
     }   
+    return os;
 }
 matrix matrix::operator +(const matrix &M) const{
     if (_rows != M._rows || _cols != M._cols){
