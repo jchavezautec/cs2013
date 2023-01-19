@@ -14,10 +14,9 @@ float promedio(Ts... args){
 }
 
 int main(){
-    
     cout << promedio(1) << endl;
     cout << promedio(1,3) << endl; 
     cout << promedio(1,2,3,4,5) << endl;
-    cout << promedio(3,3,2,1,0) << endl;
+    cout << promedio(3,3,-3-5,1.5,0) << endl;
     return 0;
 }
