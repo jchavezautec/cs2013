@@ -30,24 +30,14 @@ int linear_search(const vector<T>& A, T e){
 }
 
 template<class T>
-void insertion_sort(vector<T>& A){
-    for(std::size_t j = 1; j < A.size(); j++){
-        T key = A[j];
-        int i = j-1;
-
-        while(i >= 0 && A[i] > key){
-            A[i+1] = A[i];
-            i--;
-        }
-        A[i+1] = key;
-    }
-}
-
-template<class T>
 void is_sorted(vector<T> A){
     for(std::size_t j = 1; j < A.size(); j++){
         assert(A[j-1] <= A[j]);
     }
+}
+
+double get_random_number(double& x0){
+    x0 = x0 + (double)rand()/RAND_MAX;
 }
 
 int main(){
@@ -55,14 +45,16 @@ int main(){
     srand((unsigned)time( NULL ) );
     chrono::time_point<std::chrono::system_clock> inicio, fin;
     vector<double> A(N);
-    generate(A.begin(), A.end(), [](){return (double)rand()/RAND_MAX;});
+    double seed = 0.0;
+    for(double& x: A)
+        x = get_random_number(seed); 
 
-    insertion_sort(A);
     is_sorted(A);
 
     inicio = chrono::high_resolution_clock::now(); // Temporizador: Inicio
 
-    int indx1 = binary_search(A, A[500], 0, N-1);
+    int indice_a_buscar = N/2;
+    int indx1 = binary_search(A, A[indice_a_buscar], 0, N-1);
 
     fin    = chrono::high_resolution_clock::now(); // Temporizador: Fin
     
@@ -72,7 +64,7 @@ int main(){
 
     inicio = chrono::high_resolution_clock::now(); // Temporizador: Inicio
 
-    int indx2 = linear_search(A, A[500]);
+    int indx2 = linear_search(A, A[indice_a_buscar]);
 
     fin    = chrono::high_resolution_clock::now(); // Temporizador: Fin
     
