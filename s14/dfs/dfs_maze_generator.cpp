@@ -141,14 +141,14 @@ void Grafo<T>::dibujar_celdas(){
             cout << celdas[i][j];
         cout << endl;
     }
+    cout<<endl;
 }
 
 int main(){
-    int n = 5;
+    int n = 20;
     Grafo<pair<int,int>> g(n);
     g.generar_grafo();
     g.dibujar_celdas();
-    cout << endl;
 
     g.randomDFS(make_pair(1,1));
     g.generar_conexiones();
