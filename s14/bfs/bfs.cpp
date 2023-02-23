@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <set>
+#include <queue>
 
 using namespace std;
 
@@ -9,7 +10,7 @@ struct Grafo{
     set<char> visitados;
 
     void nueva_arista(char v1, char v2);
-    void DFS(char u);
+    void BFS(char u);
 };
 
 void Grafo::nueva_arista(char v1, char v2){
@@ -18,12 +19,20 @@ void Grafo::nueva_arista(char v1, char v2){
 }
 
 
-void Grafo::DFS(char u){
+void Grafo::BFS(char u){
     visitados.insert(u);
-    cout << "Visitando -> " << u << endl;
-    for(const char& next: g_map[u]){
-        if (visitados.find(next) == visitados.end()){
-            DFS(next);
+    queue<char> Q;
+    Q.push(u);
+
+    while (Q.size() != 0){
+        char v = Q.front();
+        cout << "Visitando -> " << v << endl;
+        Q.pop();
+        for (const char& e: g_map[v]){
+            if (visitados.find(e) == visitados.end()){
+                Q.push(e);
+                visitados.insert(e);
+            }
         }
     }
 }
@@ -36,5 +45,5 @@ int main(){
     g.nueva_arista('B','D');
     g.nueva_arista('C','E');
 
-    g.DFS('A');
+    g.BFS('A');
 }
