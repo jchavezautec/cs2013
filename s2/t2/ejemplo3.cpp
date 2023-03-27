@@ -1,6 +1,3 @@
-// An example of virtual functions with two derived classes
-// and a base class.
-
 #include <iostream>
 
 using namespace std;
