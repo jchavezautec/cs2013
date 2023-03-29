@@ -1,18 +1,11 @@
-/*
-1. Agregue en "s1/lab1a/ejercicio1.cpp" el método "float get_item(int i)". Este método debe retornar el elemento en la posicion "i" del vector.
-2. Agregue otro constructor, en "Matriz2D". Este constructor debe
-    tomar como entrada un vector y un numero entero "k". La matriz
-    resultante sera construida a partir de repetir el vector "k" veces, en
-    cada columna. En otras palabras la matriz resultante debera ser de
-    "k" columnas identicas.
-*/
-
 #include <iostream>
 #include <cmath>
 
 using namespace std;
 
 class Vector3D{
+friend ostream &print(ostream&, const Vector3D&);
+friend class Matriz2D;
 private:
     float* ptr;
 public:
@@ -35,8 +28,7 @@ public:
     float modulo(){
         return sqrt(ptr[0]*ptr[0] + ptr[1]*ptr[1] + ptr[2]*ptr[2]);
     }
-    friend ostream &print(ostream&, const Vector3D&);
-    friend class Matriz2D;
+
 };
 
 ostream &print(ostream& os, const Vector3D& item){
@@ -46,7 +38,6 @@ ostream &print(ostream& os, const Vector3D& item){
     os << endl;
     return os;
 }
-
 
 class Matriz2D{
 public:
@@ -112,8 +103,6 @@ ostream &print(ostream& os, const Matriz2D& item){
 
 int main(){
     Vector3D obj1(1, 2, 3);
-    print(cout, obj1);
-    cout << "Modulo: " << obj1.modulo() << endl;
     Matriz2D obj2(obj1, 5);
     print(cout, obj2);
 }

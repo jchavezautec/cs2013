@@ -1,13 +1,3 @@
-// Implemetar la clase Vector3D, con la siguientes caracteristicas:
-// 1. Cada objeto represente una coordenada en tres dimensiones de un vector. El constructor
-//    deber ́ıa configurar las tres coordenadas
-// 2. Para almacenar los elementos del vector, utilice un array dinamico.
-// 3. Implemente un constructor por defecto que genere un vector NULO.
-// 4. Implemente el método "modulo". Este método debe calcular el módulo del vector.
-// 5. Implemente una funcion externa "print" que imprima las coordenadas del vector.
-// 6. Implemente el destructor.
-
-
 #include <iostream>
 #include <cmath>
 
@@ -52,4 +42,9 @@ int main(){
     Vector3D obj1(1, 2, 3);
     print(cout, obj1);
     cout << "Modulo: " << obj1.modulo() << endl;
+
+    Vector3D obj2;
+    print(cout, obj2);
+    cout << "Modulo: " << obj2.modulo() << endl;
+
 }
