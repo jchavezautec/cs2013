@@ -1,0 +1,85 @@
+/*
+Implementar un programa en C++ con los siguientes requisitos:
+
+1. Aplique el constructor copia y el constructor por movimiento.
+2. Aplicarlo a un juego de dados.
+3. El jugador escoger las veces que lanza el dado. Almacenar los valores en un
+    array dinámico.
+4. Si el jugador logra obtener un promedio mayor o igual a 4 gana.
+5. El dado debe retornar un valor entre 1 y 6 de forma aleatoria.
+6. El método lanzar() debe generar un valor aleatorio para cada uno de los dados y verificar
+    si el promedio es mayor o igual a 4.
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Dados{
+private:
+    int *valores;
+    int cantidad;
+
+public:
+    Dados(int cantidad){
+        this->cantidad = cantidad;
+        valores = new int[cantidad];
+    }
+
+    Dados(const Dados &d){
+        this->cantidad = d.cantidad;
+        valores = new int[cantidad];
+        for(int i = 0; i < cantidad; i++){
+            valores[i] = d.valores[i];
+        }
+    }
+
+    Dados(Dados &&d){
+        this->cantidad = d.cantidad;
+        valores = d.valores;
+        d.valores = nullptr;
+    }
+
+    void lanzar(){
+        int suma = 0;
+        for(int i = 0; i < cantidad; i++){
+            valores[i] = rand() % 6 + 1;
+            suma += valores[i];
+        }
+        if(suma / cantidad >= 4){
+            cout << "Ganaste!" << endl;
+        }else{
+            cout << "Perdiste!" << endl;
+        }
+    }
+
+    void mostrar(){
+        for(int i = 0; i < cantidad; i++){
+            cout << valores[i] << " ";
+        }
+        cout << endl;
+    }
+
+    ~Dados(){
+        delete[] valores;
+    }
+};
+
+int main(){
+    int cantidad;
+    cout << "Cantidad de dados: ";
+    cin >> cantidad;
+
+    Dados d1(cantidad);
+    d1.lanzar();
+    d1.mostrar();
+
+    Dados d2 = d1;
+    d2.mostrar();
+
+    Dados d3 = move(d1);
+    d3.mostrar();
+
+    return 0;
+}
+
