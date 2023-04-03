@@ -1,14 +1,3 @@
-/*
-1. Use overloading operation to operates complex numbers.
-2. Use the operator >> to read a complex number.
-3. Use the operator << to show a complex number.
-4. Use the operator + to add two complex numbers.
-5. Use the operator - to subtract two complex numbers.
-6. Use the operator * to multiply two complex numbers.
-8. Use the operator == to compare two complex numbers.
-10. Use the operator ++ to increment a complex number.
-*/
-
 #include <iostream>
 
 using namespace std;
