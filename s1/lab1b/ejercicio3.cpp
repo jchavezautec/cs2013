@@ -1,16 +1,3 @@
-/*
-Implementar un programa en C++ con los siguientes requisitos:
-
-1. Aplique el constructor copia y el constructor por movimiento.
-2. Aplicarlo a un juego de dados.
-3. El jugador escoger las veces que lanza el dado. Almacenar los valores en un
-    array dinámico.
-4. Si el jugador logra obtener un promedio mayor o igual a 4 gana.
-5. El dado debe retornar un valor entre 1 y 6 de forma aleatoria.
-6. El método lanzar() debe generar un valor aleatorio para cada uno de los dados y verificar
-    si el promedio es mayor o igual a 4.
-*/
-
 #include <iostream>
 
 using namespace std;
@@ -69,7 +56,7 @@ int main(){
     int cantidad;
     cout << "Cantidad de dados: ";
     cin >> cantidad;
-
+    
     Dados d1(cantidad);
     d1.lanzar();
     d1.mostrar();

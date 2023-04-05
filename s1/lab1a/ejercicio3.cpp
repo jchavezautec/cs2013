@@ -102,7 +102,7 @@ ostream &print(ostream& os, const Matriz2D& item){
 }
 
 int main(){
-    Vector3D obj1(1, 2, 3);
-    Matriz2D obj2(obj1, 5);
+    Vector3D obj1(7, 2, 3);
+    Matriz2D obj2(obj1, 9);
     print(cout, obj2);
 }

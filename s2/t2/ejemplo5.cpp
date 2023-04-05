@@ -10,15 +10,7 @@ public:
     int f(int x) { return x;} 
     int f(int x, int y) { return x + y;}
 };
- 
-int main()
-{
-    Num n;
-    cout << "f:" << obj.f(2) << endl;
-    cout << "f:" << obj.f(2,3) << endl;
- 
-    return 0;
-}
+
 
 class Forma{
 public:

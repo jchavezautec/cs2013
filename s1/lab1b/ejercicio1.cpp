@@ -20,7 +20,7 @@ public:
     }
 
     Personaje(const Personaje &p){
-        this->nombre = p.nombre;
+        //this->nombre = p.nombre;
         this->vida = p.vida;
         this->ataque = p.ataque;
         this->defensa = p.defensa;
@@ -32,6 +32,10 @@ public:
     }
 
     void mostrar(){
+        if(nombre == ""){
+            cout << "El personaje no tiene un nombre" << endl;
+            return;
+        }
         cout << "Nombre: " << nombre << endl;
         cout << "Vida: " << vida << endl;
         cout << "Ataque: " << ataque << endl;
@@ -42,11 +46,12 @@ public:
 
 int main(){
     Personaje p1("Arthas", 100, 50, 30, 100);
-    
-    Personaje p2 = p1;
-    p2.cambiarNombre("Jaina");
-
     p1.mostrar();
+
+    Personaje p2 = p1;
+    p2.mostrar();
+
+    p2.cambiarNombre("Jaina");
     p2.mostrar();
 
     return 0;

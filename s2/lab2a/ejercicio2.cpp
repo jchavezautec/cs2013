@@ -24,11 +24,13 @@ Deck::Deck(){
 void Deck::operator>>(int random){
     cout << "Barajando..." << endl;
     for(int i = 0; i < random; i++){
-        int j = rand() % 52;
-        int k = rand() % 52;
-        int temp = deck[j];
-        deck[j] = deck[k];
-        deck[k] = temp;
+        for(int r = 0; r < 52; r++){
+            int j = rand() % 52;
+            int k = rand() % 52;
+            int temp = deck[j];
+            deck[j] = deck[k];
+            deck[k] = temp;
+        }
     }
 }
 
@@ -36,10 +38,10 @@ ostream& operator<<(ostream& os, const Deck& deck){
     int i = rand() % 52;
     int j = rand() % 52;
     os << "----------------------------------------" << endl;
-    os << "Carta 1: " << deck.deck[i] << endl;
-    os << "Carta 2: " << deck.deck[j] << endl;
+    os << "Carta 1: " << deck.deck[i]%13 + 1 << endl;
+    os << "Carta 2: " << deck.deck[j]%13 + 1<< endl;
     os << "----------------------------------------" << endl;
-    if(deck.deck[i] == deck.deck[j])
+    if(deck.deck[i]%13 == (deck.deck[j]%13))
         os << "Ganaste!" << endl;
     else
         os << "Perdiste!" << endl;

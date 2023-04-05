@@ -11,8 +11,6 @@ friend bool operator==(const Coor &item1, const Coor &item2);
 public:
     Coor() = default;
     Coor(double x, double y): x(x), y(y){}
-    double get_x() const {return x;}
-    double get_y() const {return y;}
 private:
     double x;
     double y;

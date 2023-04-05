@@ -12,7 +12,6 @@ public:
     void f() { cout << "B::f()" << endl; }
     void g() { cout << "B::g()" << endl; }
 };
-
 int main() {
     A *a;
     B b;

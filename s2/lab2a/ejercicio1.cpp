@@ -14,7 +14,6 @@ public:
     void operator+(int vida);
     void operator>>(Pj& pj);
 };
-
 ostream& operator<<(ostream& os, const Pj& pj){
     os << "----------------------------------------" << endl;
     os << "Nombre: " << pj.nombre << endl;
@@ -23,7 +22,6 @@ ostream& operator<<(ostream& os, const Pj& pj){
     os << "----------------------------------------" << endl;
     return os;
 }
-
 void Pj::operator>>(Pj& pj){
     cout << "----------------------------------------" << endl;
     cout << this->nombre << " ataca a " << pj.nombre << endl;
@@ -31,7 +29,6 @@ void Pj::operator>>(Pj& pj){
     cout << "----------------------------------------" << endl;
     pj.vida -= this->ataque;
 }
-
 void Pj::operator+(int vida){
     cout << "----------------------------------------" << endl;
     cout << this->nombre << " recupera " << vida << " de vida" << endl;
