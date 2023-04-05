@@ -3,23 +3,23 @@
 using namespace std;
 
 struct Item{
-    int danio;
+    int vida;
     virtual void usar() = 0;
 };
 
-struct Hacha: public Item{
-    Hacha(): Item(){this->danio = 10;};
-    void usar(){cout << "Hacha (-10)" << endl;};
+struct Carne: public Item{
+    Carne(): Item(){this->vida = 10;};
+    void usar(){cout << "Carne (+10)" << endl;};
 };
 
-struct Espada: public Item{
-    Espada(): Item(){this->danio = 15;};
-    void usar(){cout << "Espada (-15)" << endl;};
+struct Agua: public Item{
+    Agua(): Item(){this->vida = 5;};
+    void usar(){cout << "Agua (+5)" << endl;};
 };
 
-struct Arco: public Item{
-    Arco(): Item(){this->danio = 20;};
-    void usar(){cout << "Arco (-20)" << endl;};
+struct Magia: public Item{
+    Magia(): Item(){this->vida = 8;};
+    void usar(){cout << "Magia (+8)" << endl;};
 };
 
 class Pj{
@@ -31,7 +31,9 @@ private:
     int ataque;
 public:
     Pj(string n, string r, int v, int a): nombre(n), raza(r), vida(v), ataque(a){};
-    void atacar(Item& item, Pj& pj);
+    void operator+(Item& item);
+    void operator>>(Pj& pj);
+    void curar(Item& item);
 };
 
 ostream& operator<<(ostream& os, const Pj& pj){
@@ -44,31 +46,31 @@ ostream& operator<<(ostream& os, const Pj& pj){
     return os;
 }
 
-void Pj::atacar(Item& item, Pj& pj){
+void Pj::curar(Item& item){
     cout << "----------------------------------------" << endl;
-    cout << this->nombre << " ataca con ";
+    cout << this->nombre << " se cura con ";
     item.usar();
-    cout << "a " << pj.nombre << endl;
-    cout << pj.nombre << " pierde " << item.danio << " puntos de vida" << endl;
     cout << "----------------------------------------" << endl;
-    pj.vida -= item.danio;
+    this->vida += item.vida;
 }
 
 int main(){
     Pj pj1("Orgrim", "Orco", 100, 20);
     Pj pj2("Legolas", "Elfo", 60, 35);
     Pj pj3("Aragorn", "Humano", 80, 25);
-    
-    Hacha hacha;
-    Espada espada;
-    Arco arco;
-    
+
+    Carne carne;
+    Agua agua;
+    Magia magia;
+
     cout << pj1 << pj2 << pj3;
-    
-    pj1.atacar(hacha, pj2);
-    pj2.atacar(arco, pj3);
+
+    pj1.curar(carne);
+    pj2.curar(magia);
+    pj3.curar(agua);
 
     cout << pj1 << pj2 << pj3;
 
     return 0;
 }
+    
