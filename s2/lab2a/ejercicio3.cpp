@@ -15,7 +15,6 @@ public:
     Complejo operator-(Complejo& complejo);
     Complejo operator*(Complejo& complejo);
     bool operator==(Complejo& complejo);
-    
     void operator++(){
         real++;
         imaginario++;
@@ -31,14 +30,14 @@ Complejo Complejo::operator-(Complejo& complejo){
 }
 
 Complejo Complejo::operator*(Complejo& complejo){
-    return Complejo(real * complejo.real, imaginario * complejo.imaginario);
+    int real_total = real * complejo.real - imaginario*complejo.imaginario;
+    int imag_total = real * complejo.imaginario + imaginario * complejo.real;
+    return Complejo(real_total, imag_total);
 }
 
 bool Complejo::operator==(Complejo& complejo){
     return (real == complejo.real && imaginario == complejo.imaginario);
 }
-
-
 
 ostream& operator<<(ostream& os, const Complejo& complejo){
     os << complejo.real << " + " << complejo.imaginario << "i";
@@ -71,9 +70,6 @@ int main(){
     ++complejo1;
     cout << "Complejo 1: " << complejo1 << endl;
     cout << "Complejo 2: " << complejo2 << endl;
-    cout << "Complejo 3: " << complejo3 << endl;
-    cout << "Ingrese un complejo: ";
-    cin >> complejo3;
     cout << "Complejo 3: " << complejo3 << endl;
     return 0;
 }

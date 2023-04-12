@@ -17,6 +17,8 @@ struct C{};
 
 int main(){
     A<5> a1;
+    cout << a1.area << endl; // Resultado: 25
     B b1;
+    cout << b1.area << endl; // Resultado: 9
     C<'a'> c1;
 }

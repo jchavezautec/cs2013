@@ -19,8 +19,8 @@ bool Max (T1 a, T2 b) {
 
 
 int main(){
-    int x=1, y=3;
-    cout << sumar(3.1,4.1) <<endl;
-    cout << Max<int>(x,y) << endl;
+    int x=1;
+    char y='a';
+    cout << Max(x,y) << endl;
     return 0;
 }
