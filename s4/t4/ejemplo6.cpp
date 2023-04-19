@@ -6,7 +6,7 @@ void print(){cout << endl;}
 
 template<typename T, typename... Ts>
 void print(T arg, Ts... args){
-    cout << arg;
+    cout << arg << " ";
     print(args...);
 }
 

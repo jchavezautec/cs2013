@@ -1,11 +1,13 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
 
 template<class... Ts>
-auto suma(Ts... args){
-    return (args+...);
+float suma(Ts... args){
+    float s = (pow(args,2)+...);
+    return s / sizeof...(args);
 }
 
 int main(){

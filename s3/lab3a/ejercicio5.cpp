@@ -14,7 +14,6 @@ public:
         this->max = max;
         this->step = step;
     }
-
     void print(){
         for(T i = min; i <= max; i += step){
             cout << i << " ";
@@ -30,5 +29,7 @@ int main () {
     range<double> obj2(1.1, 11, 1.1);
     obj2.print();
 
+    range<double> obj3(1, 11, 0.5);
+    obj3.print();
     return 0;
 }
