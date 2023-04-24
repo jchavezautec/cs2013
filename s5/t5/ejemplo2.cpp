@@ -2,6 +2,7 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 int suma(int x1, int x2){ return x1 + x2; }
 int resta(int x1, int x2){ return x1 - x2; }
 
@@ -22,3 +23,23 @@ int main(){
     return 0;
 }
 
+=======
+struct printString{
+    char _c;
+    printString(char c = ' '): _c(c) {}
+    void operator() (string s){
+        cout << s << _c;
+    }
+};
+
+
+int main(){
+    printString line('\n');
+    line("Hola");
+    
+    printString excl('!');
+    excl("Ingrese un entero valido");
+
+    return 0;
+}
+>>>>>>> aaabd7447294cdb65bd133a981d5eb159087bbd9

@@ -16,7 +16,6 @@ int main(){
     Foo<float> obj1;
     Foo<char> obj2;
     Foo<int> obj3;
-
     return 0;
 }
 

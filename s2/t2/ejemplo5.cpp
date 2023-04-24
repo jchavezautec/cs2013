@@ -5,11 +5,6 @@ using namespace std;
 #include <iostream>
 using namespace std;
  
-class Num{
-public:
-    int f(int x) { return x;} 
-    int f(int x, int y) { return x + y;}
-};
 
 
 class Forma{

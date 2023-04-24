@@ -5,7 +5,7 @@ using namespace std;
 class Forma{
 friend ostream& operator<<(ostream& os, const Forma& forma);
 protected:
-    int area;
+    double area;
 public:
     Forma(): area(0){};
     Forma(int a): area(a){};
@@ -61,15 +61,13 @@ int main(){
     forma->calcularArea();
     cout << *forma << endl;
 
-    forma = &circulo;
-    forma->calcularArea();
-    cout << *forma << endl;
-
     forma = &triangulo;
     forma->calcularArea();
     cout << *forma << endl;
 
-    delete forma;
+    forma = &circulo;
+    forma->calcularArea();
+    cout << *forma << endl;
 
     return 0;
 }   

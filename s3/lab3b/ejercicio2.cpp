@@ -8,17 +8,25 @@ template<int n = 2, class T = int>
 class Polinomio{
     public:
     void print(){
-        for(int i=0; i<n + 1; i++){
-            T num = rand() % 1001 - 500;
-            if (num > 0 && i > 0)
-                cout << "+";
-            cout << setprecision(2);
-            cout << num / 100 ;
-            if (i < n){
-                cout << "x^" << (n-i);
+        T r = rand() % 1001 - 500;
+        cout << r/10 << "x^" << n;
+
+        for(int i=n-1; i>=0; i--){
+            T r = rand() % 1000 - 500;
+            if(r > 0){
+                cout << '+' << r/10;
+                if (i > 0){
+                    cout << "x^" << i;
+                }
+            }
+            else{
+                cout << '-' << -1 * r/10;
+                if (i > 0){
+                    cout << "x^" << i;
+                }                
             }
         }
-        cout << endl;
+        cout << endl;    
     }
 };
 
