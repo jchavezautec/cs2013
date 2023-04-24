@@ -11,9 +11,7 @@ int fibonacci(int n){
 
 int main(){
     vector<int> v = {1,2,3,4,5,6,7,8,9,10};
-
     transform(v.begin(), v.end(), v.begin(), fibonacci);
     for_each(v.begin(), v.end(), [](int x){cout << x << " ";});
     cout << "\n---------------------------------\n";
-    
 }
