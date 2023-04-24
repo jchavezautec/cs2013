@@ -2,6 +2,10 @@
 
 using namespace std;
 
+void printer(){
+    cout << "Hola Mundo" << endl;
+}
+
 int suma(int x1, int x2){ return x1 + x2; }
 int resta(int x1, int x2){ return x1 - x2; }
 

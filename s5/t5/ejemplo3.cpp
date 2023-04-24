@@ -2,15 +2,15 @@
 
 using namespace std;
 
-class printString{
-private:
-    char _end;
-public:
-    printString(char c = ' '): _end(c) {}
+struct printString{
+    char _c;
+    printString(char c = ' '): _c(c) {}
     void operator() (string s){
-        cout << s << _end;
+        cout << s << _c;
     }
 };
+
+
 int main(){
     printString line('\n');
     line("Hola");
