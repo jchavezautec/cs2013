@@ -1,41 +1,36 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-void printArray(int A[], int n){
-    for (int i = 0; i < n; i++)
-        cout << A[i] << " ";
-    cout << endl;
-}
-
-void bubbleSort(int A[], int n){
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (A[j] > A[j + 1])
-                swap(A[j],A[j+1]);
-}
-
-void bubbleSortMod(int A[], int n, bool(*comp)(int, int)){
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (comp(A[j], A[j + 1]))
-                swap(A[j],A[j+1]);
-}
-
-bool compasc(int a, int b){ return a > b;}
-bool compdes(int a, int b){ return a < b;}
+struct CAfin{
+    int _a, _b;
+    CAfin(int a, int b): _a(a), _b(b){}
+    char operator()(char c){
+        return (_a * (c - 'A') + _b) % 26 + 'A';
+    }
+};
 
 int main(){
-    int A[] = {4,2,1,7,-1,5,0};
-    int szA = sizeof(A)/sizeof(A[0]);
-    printArray(A, szA);
+    CAfin cifrar(5, 8);         // c = (ax+b)%26 = (5x+8)%26          
+    //cout << "Original: " << s << endl;
+    
+    //transform(s.begin(), s.end(), s.begin(), cifrar);
+    //cout << "Cifrado: " << s << endl;
 
-    bubbleSortMod(A, szA, &compasc);
-    printArray(A, szA);
+    string c = "EVAVAUINCLAKECZWCVCRIUZIKECLWQFWIUESEIPZA";
+    string alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    bubbleSortMod(A, szA, &compdes);
-    printArray(A, szA);
+    cout << "Cifrado: " << c << endl;
+    
+    for(int i=0; i<c.length()  ; i++){
+        for(int j=0; j<alf.length(); j++){
+            if (c[i] == cifrar(alf[j])){
+                cout << alf[j];
+            }
+        }
+    }
+    cout << endl;
 
     return 0;
 }
-
