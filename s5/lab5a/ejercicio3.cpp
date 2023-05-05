@@ -1,39 +1,23 @@
 #include <iostream>
-#include <cmath>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
 
-class powerInt{
-private:
-    int _exp;
-public:
-    powerInt(int exp): _exp(exp){}
-
-    int operator() (int num) {
-        return pow(num, _exp);
-    }
-};
-
-template<class T>
-class printArray{
-private:
-    char _end;
-public:
-    printArray(char c = ' '): _end(c) {}
-    void operator() (T x){
-        cout << x << _end;
-    }
-};
+void random_choose(vector<string> v, int n){
+    random_shuffle(v.begin(), v.end());
+    for_each(v.begin(), v.begin()+n, [](string x){cout << x << " ";}); cout << endl;
+}
 
 int main(){
-    int A[] = {1,2,3,4,5};
-    for_each(A, A + 5, printArray<int>(' '));
-    
-    cout << endl;
-    transform(A, A + 5, A, powerInt(3));
-    for_each(A, A + 5, printArray<int>(' '));
-    cout << endl;
-    
+    int  i = 0;                    // variable: 1 - 13
+    string figs = "CDET";
+    vector<string> deck(52);
+
+    generate(deck.begin(), deck.end(), [&](){return to_string((i++)%13+1) + figs[i/13];});
+    for_each(deck.begin(), deck.end(), [](string x){cout << x << " ";}); cout << endl;
+
+    random_choose(deck, 5);
+
     return 0;
 }

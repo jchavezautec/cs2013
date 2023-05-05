@@ -1,41 +1,25 @@
 #include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <time.h>
 
 using namespace std;
 
-void printArray(int A[], int n){
-    for (int i = 0; i < n; i++)
-        cout << A[i] << " ";
-    cout << endl;
-}
-
-void bubbleSort(int A[], int n){
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (A[j] > A[j + 1])
-                swap(A[j],A[j+1]);
-}
-
-void bubbleSortMod(int A[], int n, bool(*comp)(int, int)){
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (comp(A[j], A[j + 1]))
-                swap(A[j],A[j+1]);
-}
-
-bool compasc(int a, int b){ return a > b;}
-bool compdes(int a, int b){ return a < b;}
+struct Cifrado{
+    int _a, _b;
+    Cifrado(int a, int b): _a(a), _b(b){}
+    char operator()(char input){ 
+        return ((input - 'A')*_b + _a) % 26 + 'A';
+    }
+};
 
 int main(){
-    int A[] = {4,2,1,7,-1,5,0};
-    int szA = sizeof(A)/sizeof(A[0]);
-    printArray(A, szA);
+    Cifrado c(3,7);
+    string s = "HOLA";
 
-    bubbleSortMod(A, szA, &compasc);
-    printArray(A, szA);
-
-    bubbleSortMod(A, szA, &compdes);
-    printArray(A, szA);
+    cout << "Original: " << s << endl;
+    transform(s.begin(), s.end(), s.begin(), c);
+    cout << "Cifrado : " << s << endl;
 
     return 0;
 }
-
