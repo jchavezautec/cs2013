@@ -5,17 +5,6 @@
 
 using namespace std;
 
-template<class T>
-class printContainer{
-private:
-    char _end;
-public:
-    printContainer(char c = ' '): _end(c) {}
-    void operator() (T x){
-        cout << x << _end;
-    }
-};
-
 bool es_compuesto(int x){
     for (int i=2; i < x; i++){
         if (x % i == 0)
@@ -26,16 +15,18 @@ bool es_compuesto(int x){
 
 int main(){
     forward_list<int> lista;
+    // Metodo 1:
+    for (int i=0; i<100; i++)
+        lista.push_front(rand()%99 + 1);
 
-    for (int i = 0; i < 100; i++){
-        lista.push_front(rand()%100);
-    }
+    // Metodo 2:
+    //generate_n(front_inserter(lista), 100, [](){return rand()%99 + 1;});
 
-    for_each(lista.begin(),lista.end(),printContainer<int>());
+    for_each(lista.begin(),lista.end(),[](int x){cout << x << " ";});
     cout << endl;
 
     lista.remove_if(es_compuesto);
-    for_each(lista.begin(),lista.end(),printContainer<int>());
+    for_each(lista.begin(),lista.end(),[](int x){cout << x << " ";});
     cout << endl;
 
     cout << "lista[size] = " << distance(lista.begin(), lista.end());
