@@ -19,10 +19,19 @@ int main(){
     map<int,int>::iterator it = hist.begin();
     pair<int, int> max_pair = {(*it).first, (*it).second};
 
+    /*
     for (auto pair: hist){
         if (pair.second > max_pair.second)
             max_pair.second = pair.second;
             max_pair.first = pair.first;
+    }
+    */
+
+    for(auto it = hist.begin(); it != hist.end(); it++){
+        if ((*it).second > max_pair.second){
+            max_pair.second = (*it).second;
+            max_pair.first = (*it).first;
+        }    
     }
 
     cout << "Moda: " << max_pair.first;

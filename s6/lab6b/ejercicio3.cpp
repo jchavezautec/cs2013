@@ -3,6 +3,7 @@
 #include <forward_list>
 #include <algorithm>
 #include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -18,6 +19,8 @@ public:
 };
 
 bool es_compuesto(int x){
+    if (x < 2)
+        return true;
     for (int i=2; i < x; i++){
         if (x % i == 0)
             return true;
@@ -28,21 +31,22 @@ bool es_compuesto(int x){
 int main(){
     forward_list<int> lista;
 
-    for (int i = 0; i < 100; i++){
-        lista.push_front(rand()%100);
-    }
-    cout << "numeros:"<<endl;
+    generate_n(front_inserter(lista), 100, [](){return rand()%21;});
+
+    cout << "Numeros:"<<endl;
     for_each(lista.begin(),lista.end(),printContainer<int>());
     cout << endl;
 
     lista.remove_if(es_compuesto);
-    cout << "\nprimos repetidos:"<<endl;
+    cout << "\nPrimos repetidos:"<<endl;
     for_each(lista.begin(),lista.end(),printContainer<int>());
     cout << endl;
 
 
-    cout << "\nprimos:" << endl;
-    set<int> s(lista.begin(), lista.end());
+    cout << "\nPrimos:" << endl;
+
+    //set<int> s(lista.begin(), lista.end());
+    unordered_set<int> s(lista.begin(), lista.end());
     for_each(s.begin(),s.end(),printContainer<int>());
     cout << endl;
 

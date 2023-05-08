@@ -10,8 +10,9 @@ int main(){
 	while (getline(cin,word)){
 		if (word.begin()==word.end())
 			break;
-        for (char& ch: word)
-            ch = tolower(ch);
+        for (auto it = word.begin(); it != word.end(); ++it){
+			*it = tolower(*it);
+		}
 		word_count[word]++;
 	}
 
@@ -23,3 +24,4 @@ int main(){
 
 	return 0;
 }
+
