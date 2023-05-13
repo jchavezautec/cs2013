@@ -1,18 +1,33 @@
 #include <iostream>
-#include <thread>
 
 using namespace std;
 
-void foo(int a, int& b){
-    b = b + a;
-}
+class Foo {
+public:
+  static int x;
+  int y = 0;
 
-int main(){
-    int a=1, b=2;
-    std::thread t(foo, a, ref(b));    
-    cout << "b = " << b << endl;
-    
-    t.join();           
+  static void f1() {
+    x = 2;
+    // y = 3;
+  }
+  void f2() {
+    x = 3;
+    y = 3;
+  }
+};
 
-    return 0;
+int Foo::x = 3;
+
+int main() {
+  Foo::f1();
+  Foo obj1;
+  cout << "x = " << obj1.x << ", ";
+  cout << "y = " << obj1.y << endl;
+
+  Foo obj2;
+  cout << "x = " << obj1.x << ", ";
+  cout << "y = " << obj1.y << endl;
+
+  return 0;
 }

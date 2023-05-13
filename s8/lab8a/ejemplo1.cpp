@@ -1,20 +1,16 @@
 #include <iostream>
+#include <thread>
 
-using namespace std;
-
-class Foo{
-    public:
-        static int x;
-};
-
-int Foo::x = 3;
+void foo(){
+    std::cout << "funcion 'foo'\n";
+}   
 
 int main(){
-    Foo obj1;
-    cout << obj1.x << endl;
-    
-    Foo obj2;
-    cout << obj2.x << endl;
-
+    std::thread t(&foo);    
+    t.join();           
+               
     return 0;
 }
+
+
+
