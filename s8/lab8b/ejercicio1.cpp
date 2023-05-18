@@ -86,5 +86,4 @@ int main(){
     for (int i=0; i < dim; i++)
        delete[] m3[i];
     delete[] m3;
-
 }
