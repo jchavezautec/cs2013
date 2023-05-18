@@ -73,7 +73,4 @@ void procesamiento_paralelo(int N, int n_threads){
 int main(){
     procesamiento_1thread(1000000);
     //procesamiento_paralelo(1000000, 2);
-}
-
-
-
+}   
