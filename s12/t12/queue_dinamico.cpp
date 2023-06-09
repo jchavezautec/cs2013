@@ -13,17 +13,17 @@ struct Nodo{
 template<typename T>
 class Cola{
 private:
-    int size_cola;
-    Nodo<T>* nodo_front;
-    Nodo<T>* nodo_back;
+    int size_cola;       // Numero de elementos en la cola
+    Nodo<T>* nodo_front; // Puntero al frente de la cola
+    Nodo<T>* nodo_back;  // Puntero al final de la cola
 public:
-    Cola();
-    bool empty();
-    int size();
-    T front();
-    T back();
-    void push(T);
-    void pop();
+    Cola();        
+    bool empty();  // Retorna true si la cola esta vacia
+    int size();    // Retorna el numero de elementos en la cola
+    T front();     // Retorna el elemento en el frente de la cola
+    T back();      // Retorna el elemento en el final de la cola 
+    void push(T);  // Agrega un elemento al final de la cola
+    void pop();    // Elimina el elemento en el frente de la cola
 };
 
 // El constructor inicializa los atributos de la clase
@@ -56,14 +56,15 @@ T Cola<T>::back(){
     return nodo_back->valor;
 }
 
-// El metodo push() agrega un nuevo nodo al final de la cola
-// (back), el nodo 'nuevo' ahora apunta a NULL y el elemento
-// 'e' se guarda en el nodo 'nuevo'. Si la cola esta vacia
-// (nodo_front == NULL) entonces el nodo 'nuevo' tambien es el
-// frente de la cola (nodo_front = nuevo) y si la cola no esta
-// vacia entonces el nodo 'nuevo' se agrega al final de la
-// cola (nodo_back->next = nuevo) y el nodo 'back' ahora apunta
-// al nodo 'nuevo' (nodo_back = nuevo)
+/* 
+El metodo push() agrega un nuevo nodo al final de la cola, el
+nodo 'nuevo' ahora apunta a NULL y el elemento 'e' se guarda en
+el nodo 'nuevo'. Si la cola esta vacia (nodo_front == NULL)
+entonces el nodo 'nuevo' tambien es el frente de la cola 
+(nodo_front = nuevo) y si la cola no esta vacia entonces el
+nodo 'nuevo' se agrega al final de la cola (nodo_back->next = nuevo)
+y el nodo 'back' ahora apunta al nodo 'nuevo' (nodo_back = nuevo) 
+*/
 template<typename T>
 void Cola<T>::push(T e){
     Nodo<T>* nuevo = new Nodo<T>(e, NULL);
@@ -76,12 +77,14 @@ void Cola<T>::push(T e){
     size_cola++;
 }
 
-// El metodo pop() elimina el nodo en el frente de la cola
-// (front) y el nodo 'nodo_front' ahora apunta al siguiente nodo
-// en la cola (nodo_front = nodo_front->next). Si la cola esta vacia
-// (nodo_front == NULL) entonces el nodo 'nodo_back' tambien es NULL
-// (nodo_back = NULL) y si la cola no esta vacia entonces el
-// nodo 'nodo_front' se elimina y el nodo 'nodo_back' no cambia
+/*
+El metodo pop() elimina el nodo en el frente de la cola
+(front) y el nodo 'nodo_front' ahora apunta al siguiente nodo
+en la cola (nodo_front = nodo_front->next). Si la cola esta vacia
+(nodo_front == NULL) entonces el nodo 'nodo_back' tambien es NULL
+(nodo_back = NULL) y si la cola no esta vacia entonces el
+nodo 'nodo_front' se elimina y el nodo 'nodo_back' no cambia
+*/
 template<typename T>
 void Cola<T>::pop(){
     if(!empty()){

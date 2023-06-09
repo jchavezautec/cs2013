@@ -39,14 +39,14 @@ public:
 int main() {
     // Crear instancia de imagen en formato JPEG
     JPEGImagen imagenJPEG;
-    PNGImagen imagenPNG;
+    //PNGImagen imagenPNG;
 
     // Crear instancia del Adapter para formato PNG
     AdapterPNG adapterPNG;
 
     // Utilizar los métodos de IFormatoImagen para mostrar las imágenes
     imagenJPEG.mostrar();
-    imagenPNG.mostrar();
+    //imagenPNG.mostrar();
     adapterPNG.mostrar();
 
     return 0;

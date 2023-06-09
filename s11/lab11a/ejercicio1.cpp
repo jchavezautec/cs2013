@@ -1,51 +1,57 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-// Interfaz del Target
-class InterfazPlug { 
+// Interfaz del reproductor de música existente
+class Reproductor {
 public:
-    void virtual DosPines(){}
+    virtual void reproducirWAV(const string& archivo) const = 0;
 };
 
-// Target
-class Plug: public InterfazPlug { 
+// Implementación del reproductor de música existente
+class ReproductorWAV : public Reproductor {
 public:
-    void DosPines() {
-        cout << " Tengo dos pines" << endl;
+    void reproducirWAV(const string& archivo) const override {
+        // Implementación para reproducir archivos WAV
+        cout << "Reproduciendo archivo WAV: " << archivo << endl;
     }
 };
 
-// Interfaz del Adaptee
-class InterfazSwitch { 
+// Interfaz del reproductor de música adaptado para archivos MP3
+class ReproductorMP3 {
 public:
-    void virtual TresPines() {}
+    virtual void reproducirMP3(const string& archivo) const = 0;
 };
 
-// Adaptee
-class Switch : public InterfazSwitch {
+// Implementación del reproductor de música adaptado para archivos MP3
+class AdaptadorMP3 : public ReproductorMP3 {
+private:
+    Reproductor* reproductor;
+
 public:
-    void TresPines() {
-        cout << "En la habitacion solo hay de tres pines" << endl;
+    AdaptadorMP3(Reproductor* reproductor) : reproductor(reproductor) {}
+
+    void reproducirMP3(const string& archivo) const override {
+        // Lógica de adaptación para reproducir archivos MP3 utilizando 
+        // el reproductor existente
+        cout << "Adaptador: Reproduciendo archivo MP3" << endl;
+        reproductor->reproducirWAV(archivo);
     }
 };
 
-// Adapter
-class Adapter : public InterfazPlug {
-public:
-    InterfazSwitch *_interfaz_switch;
-    Adapter(InterfazSwitch *interfaz_switch) {
-            _interfaz_switch = interfaz_switch;
-    }
-    void DosPines() { _interfaz_switch->TresPines();}
-};
+int main() {
+    // Crear el reproductor WAV
+    ReproductorWAV reproductorWAV;
 
-// Cliente
-int main(){
-    // Adaptee
-    Switch *mySwitch = new Switch; 
+    // Crear el adaptador para reproducir archivos MP3
+    ReproductorMP3* adaptadorMP3 = new AdaptadorMP3(&reproductorWAV);
 
-    // Target <= Adapter(Adaptee)
-    InterfazPlug *adapter = new Adapter(mySwitch);
-    adapter->DosPines();
+    // Reproducir archivo MP3 utilizando el adaptador
+    adaptadorMP3->reproducirMP3("cancion.mp3");
+
+    // Liberar la memoria
+    delete adaptadorMP3;
+
+    return 0;
 }

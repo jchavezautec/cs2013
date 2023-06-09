@@ -4,9 +4,8 @@
 
 using namespace std;
 
-template<class T>
-void insertion_sort(std::vector<T>& v){
-    for(std::size_t j = 1; j < v.size(); j++){
+void insertion_sort(std::vector<int>& v){
+    for(int j = 1; j < v.size(); j++){
         int key = v[j];
         int i = j-1;
 
@@ -18,21 +17,15 @@ void insertion_sort(std::vector<T>& v){
     }
 }
 
-template<class C>
-void print_container(C container){
-    for (const auto e: container)
-        cout << e << " ";
-    cout << endl;
-}
 
 int main(){
     vector<int> v(10);
 
     generate(v.begin(), v.end(), [](){return rand()%100;});
-    print_container(v);
+    for_each(v.begin(), v.end(), [](int x){cout << x << " ";});cout << endl;
 
     insertion_sort(v);
-    print_container(v);
+    for_each(v.begin(), v.end(), [](int x){cout << x << " ";});cout << endl;
 
     return 0;
 }

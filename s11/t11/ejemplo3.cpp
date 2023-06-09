@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
+// PROXY
 
+#include <iostream>
 using namespace std;
 
 // Interfaz del video
@@ -14,10 +14,8 @@ class VideoReal : public Video {
 private:
     std::string titulo;
     std::string url;
-
 public:
-    VideoReal(const string& titulo, const string& url) : titulo(titulo), url(url) {}
-
+    VideoReal(const string& titulo, const string& url):titulo(titulo), url(url) {}
     void reproducir() override {
         std::cout << "Reproduciendo el video: " << titulo << std::endl;
         std::cout << "URL: " << url << std::endl;

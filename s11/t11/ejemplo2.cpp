@@ -1,5 +1,7 @@
+// DECORATOR
+
 #include <iostream>
-#include <string>
+using namespace std;
 
 // Interfaz para todos los informes
 class Informe {
@@ -11,7 +13,6 @@ public:
 class InformeBase : public Informe {
 public:
     void generar() {
-        // Lógica para generar un informe básico
         std::cout << "Generando informe base..." << std::endl;
     }
 };
@@ -23,7 +24,6 @@ protected:
 
 public:
     InformeDecorador(Informe* informe) : informe(informe) {}
-
     void generar() {
         informe->generar();
     }
@@ -47,6 +47,7 @@ int main() {
     // Crear un informe base
     InformeBase* informeBase = new InformeBase();
     informeBase->generar();
+
     // Crear un informe con encabezado personalizado
     EncabezadoDecorador* informeConEncabezado = new EncabezadoDecorador(informeBase, "Informe de Empleados");
 

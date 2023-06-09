@@ -12,7 +12,7 @@ struct Nodo{
 template<typename T>
 class Pila{
 private:
-    int size_pila;
+    int size_pila;     // Numero de elementos en la pila
     Nodo<T>* nodo_top; // Puntero al primer nodo de la pila
 public:
     Pila();         // Inicializa la pila con nodo_top = NULL
