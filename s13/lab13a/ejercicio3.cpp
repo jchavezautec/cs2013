@@ -30,8 +30,9 @@ private:
     void imprimirPostOrdenAux(Nodo* nodo);
     int calcularAlturaAux(Nodo* nodo);
 
-    // Ejercicio 1:
-    Nodo* encontrarSucesorAux(Nodo*, int);
+    // Ejercicio 3:
+    Nodo* hojaIzquierda(Nodo* nodo);
+    Nodo* hojaDerecha(Nodo* nodo);
 public:
     // Constructor
     BST();
@@ -47,8 +48,9 @@ public:
     void destruirArbol(Nodo*);
     int calcularAltura();
 
-    // Ejercicio 1:
-    Nodo* encontrarSucesor(int);
+    // Ejercicio 3:
+    int maximo();
+    int minimo();
 };
 
 // Constructor
@@ -180,24 +182,26 @@ int BST::calcularAlturaAux(Nodo* nodo) {
   return 1 + max(calcularAlturaAux(nodo->left), calcularAlturaAux(nodo->right));
 }
 
-// Ejercicio 1:
-Nodo* BST::encontrarSucesor(int dato) {
-    return encontrarSucesorAux(raiz, dato);
+// Ejercicio 3:
+int BST::maximo() {
+  return hojaDerecha(raiz)->dato;
+}
+Nodo* BST::hojaDerecha(Nodo* nodo) {
+  if (nodo->right == nullptr) {
+    return nodo;
+  }
+  return hojaDerecha(nodo->right);
 }
 
-// Función auxiliar para encontrar el sucesor de un nodo
-Nodo* BST::encontrarSucesorAux(Nodo* nodo, int dato) {
-    if (nodo == nullptr)
-        return nullptr;
-    if (nodo->dato <= dato)
-        return encontrarSucesorAux(nodo->right, dato);
-    else{
-        Nodo* sucesor = encontrarSucesorAux(nodo->left, dato);
-        if (sucesor == nullptr)
-            return nodo;
-        else
-            return sucesor;
-    }
+int BST::minimo() {
+  return hojaIzquierda(raiz)->dato;
+}
+
+Nodo* BST::hojaIzquierda(Nodo* nodo) {
+  if (nodo->left == nullptr) {
+    return nodo;
+  }
+  return hojaIzquierda(nodo->left);
 }
 
 int main() {
@@ -212,19 +216,8 @@ int main() {
     arbol.insertarNodo(10);
     arbol.insertarNodo(5);
 
-    // Sucesor de 5
-    Nodo* sucesor = arbol.encontrarSucesor(5);
-    if (sucesor != nullptr)
-        cout << "Sucesor de 5: " << sucesor->dato << endl;
-    else
-        cout << "No existe sucesor de 5" << endl;
-
-    // Ejemplo de un nodo sin sucesor
-    sucesor = arbol.encontrarSucesor(60);
-    if (sucesor != nullptr)
-        cout << "Sucesor de 60: " << sucesor->dato << endl;
-    else
-        cout << "No existe sucesor de 60" << endl;
+    cout << "Maximo: " << arbol.maximo() << endl;
+    cout << "Minimo: " << arbol.minimo() << endl;
     
     return 0;
 }

@@ -31,7 +31,7 @@ private:
     int calcularAlturaAux(Nodo* nodo);
 
     // Ejercicio 1:
-    Nodo* encontrarSucesorAux(Nodo*, int);
+    bool esArbolAVLAux(Nodo* nodo);
 public:
     // Constructor
     BST();
@@ -47,8 +47,8 @@ public:
     void destruirArbol(Nodo*);
     int calcularAltura();
 
-    // Ejercicio 1:
-    Nodo* encontrarSucesor(int);
+    // Ejercicio 3:
+    bool esArbolAVL();
 };
 
 // Constructor
@@ -180,24 +180,25 @@ int BST::calcularAlturaAux(Nodo* nodo) {
   return 1 + max(calcularAlturaAux(nodo->left), calcularAlturaAux(nodo->right));
 }
 
-// Ejercicio 1:
-Nodo* BST::encontrarSucesor(int dato) {
-    return encontrarSucesorAux(raiz, dato);
+// Ejercicio 2:
+// Función para verificar si el árbol binario de búsqueda es un árbol AVL
+bool BST::esArbolAVL() {
+  return esArbolAVLAux(raiz);
 }
 
-// Función auxiliar para encontrar el sucesor de un nodo
-Nodo* BST::encontrarSucesorAux(Nodo* nodo, int dato) {
-    if (nodo == nullptr)
-        return nullptr;
-    if (nodo->dato <= dato)
-        return encontrarSucesorAux(nodo->right, dato);
-    else{
-        Nodo* sucesor = encontrarSucesorAux(nodo->left, dato);
-        if (sucesor == nullptr)
-            return nodo;
-        else
-            return sucesor;
-    }
+// Función auxiliar para verificar si un nodo y sus subárboles forman un árbol AVL
+bool BST::esArbolAVLAux(Nodo* nodo) {
+  if (nodo == nullptr)
+    return true;
+
+  int alturaIzq = calcularAlturaAux(nodo->left);
+  int alturaDer = calcularAlturaAux(nodo->right);
+  int diferenciaAltura = abs(alturaIzq - alturaDer);
+
+  if (diferenciaAltura > 1)
+    return false;
+
+  return esArbolAVLAux(nodo->left) && esArbolAVLAux(nodo->right);
 }
 
 int main() {
@@ -212,19 +213,8 @@ int main() {
     arbol.insertarNodo(10);
     arbol.insertarNodo(5);
 
-    // Sucesor de 5
-    Nodo* sucesor = arbol.encontrarSucesor(5);
-    if (sucesor != nullptr)
-        cout << "Sucesor de 5: " << sucesor->dato << endl;
-    else
-        cout << "No existe sucesor de 5" << endl;
-
-    // Ejemplo de un nodo sin sucesor
-    sucesor = arbol.encontrarSucesor(60);
-    if (sucesor != nullptr)
-        cout << "Sucesor de 60: " << sucesor->dato << endl;
-    else
-        cout << "No existe sucesor de 60" << endl;
+    cout << "Es un arbol AVL? " << arbol.esArbolAVL() << endl;
+    // No es un arbol AVL
     
     return 0;
 }
