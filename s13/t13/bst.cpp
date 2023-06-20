@@ -28,6 +28,8 @@ private:
     void imprimirEnOrdenAux(Nodo* nodo);
     void imprimirPreOrdenAux(Nodo* nodo);
     void imprimirPostOrdenAux(Nodo* nodo);
+    int sizeAux(Nodo* nodo);
+    int heightAux(Nodo* nodo);
 public:
     // Constructor
     BST();
@@ -41,6 +43,8 @@ public:
     void imprimirPreOrden();
     void imprimirPostOrden();
     void destruirArbol(Nodo*);
+    int size();
+    int height();
 };
 
 // Constructor
@@ -85,8 +89,6 @@ Nodo* BST::buscarNodoAux(Nodo* nodo, int dato) {
   else
     return buscarNodoAux(nodo->right, dato);
 }
-
-
 
 // Función para imprimir los nodos en orden
 void BST::imprimirEnOrden() {
@@ -159,6 +161,31 @@ void BST::destruirArbol(Nodo* nodo) {
   delete nodo;
 }
 
+// Función para obtener el tamaño del árbol
+int BST::size() {
+  return sizeAux(raiz);
+}
+
+// Función auxiliar para obtener el tamaño del árbol
+int BST::sizeAux(Nodo* nodo) {
+  if (nodo == nullptr) {
+    return 0;
+  }
+  return 1 + sizeAux(nodo->left) + sizeAux(nodo->right);
+}
+
+// Función para obtener la altura del árbol
+int BST::height() {
+  return heightAux(raiz);
+}
+
+// Función auxiliar para obtener la altura del árbol
+int BST::heightAux(Nodo* nodo) {
+  if (nodo == nullptr) {
+    return 0;
+  }
+  return 1 + max(heightAux(nodo->left), heightAux(nodo->right));
+}
 int main() {
     BST arbol;
 
@@ -194,5 +221,7 @@ int main() {
     BST nuevo(preorden);
     nuevo.imprimirPreOrden();
 
+    cout << "Size: " << arbol.size() << endl;
+    cout << "Height: " << arbol.height() << endl;
     return 0;
 }
