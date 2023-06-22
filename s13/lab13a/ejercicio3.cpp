@@ -216,8 +216,8 @@ int main() {
     arbol.insertarNodo(10);
     arbol.insertarNodo(5);
 
-    cout << "Maximo: " << arbol.maximo() << endl;
-    cout << "Minimo: " << arbol.minimo() << endl;
+    cout << "Maximo: " << arbol.maximo() << endl; // Salida: 60
+    cout << "Minimo: " << arbol.minimo() << endl; // Salida: 5
     
     return 0;
 }
