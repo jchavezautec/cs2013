@@ -1,133 +1,41 @@
 #include <iostream>
+#include <unordered_map>
 #include <unordered_set>
 
 using namespace std;
 
 template<typename T>
-class Nodo {
-public:
-    T valor;
-    bool visitado;
-    unordered_set<Nodo*> adyacentes;
-    Nodo(T val) : valor(val), visitado(false) {}
+struct Grafo{
+    unordered_map<T,unordered_set<T>> g_map;
+    unordered_set<T> visitados;
+
+    void nueva_arista(T v1, T v2);
+    void DFS(T u);
 };
 
 template<typename T>
-class Grafo {
-private:
-    unordered_set<Nodo<T>*> nodos;
-public:
-    void agregarNodo(T valor);
-    Nodo<T>* buscarNodo(T valor);
-    void agregarArista(T origen, T destino);
-
-    // Algoritmo DFS
-    void DFS(Nodo<T>* nodo);
-    void recorrerGrafoDFS(T valor);
-
-    void buclesDFS(Nodo<T>* nodo);
-    bool existeBucle(T valor);
-};
-
-template<typename T>
-void Grafo<T>::agregarNodo(T valor) {
-    nodos.insert(new Nodo<T>(valor));
+void Grafo<T>::nueva_arista(T v1, T v2){
+    g_map[v1].insert(v2);
+    g_map[v2].insert(v1);
 }
 
 template<typename T>
-Nodo<T>* Grafo<T>::buscarNodo(T valor) {
-    for (Nodo<T>* nodo : nodos)
-        if (nodo->valor == valor)
-            return nodo;
-    return nullptr;
-}
-
-
-template<typename T>
-void Grafo<T>::agregarArista(T origen, T destino) {
-    Nodo<T>* nodoOrigen = buscarNodo(origen);
-    Nodo<T>* nodoDestino = buscarNodo(destino);
-
-    if (nodoOrigen != nullptr && nodoDestino != nullptr)
-        nodoOrigen->adyacentes.insert(nodoDestino);
-}
-
-template<typename T>
-void Grafo<T>::DFS(Nodo<T>* nodo) {
-    if (nodo->visitado)
+void Grafo<T>::DFS(T u){
+    if (visitados.find(u) != visitados.end())
         return;
-
-    nodo->visitado = true;
-    cout << nodo->valor << " ";
-
-    for (Nodo<T>* adyacente : nodo->adyacentes) {
-        DFS(adyacente);
-    }
+    visitados.insert(u);
+    cout << "Visitando -> " << u << endl;
+    for(const T& next: g_map[u])
+        DFS(next);
 }
 
-template<typename T>
-void Grafo<T>::recorrerGrafoDFS(T valor) {
-    Nodo<T>* nodo = buscarNodo(valor);
-    if (nodo != nullptr){
-        // Reiniciar los visitados
-        for (Nodo<T>* nodo : nodos)
-            nodo->visitado = false;
-        DFS(nodo);
-        cout << endl;
-    }
-    else
-        cout << "Nodo no encontrado" << endl;
-}
+int main(){
+    Grafo<char> g;
+    g.nueva_arista('A','B');
+    g.nueva_arista('A','C');
+    g.nueva_arista('B','C');
+    g.nueva_arista('B','D');
+    g.nueva_arista('C','E');
 
-template<typename T>
-void Grafo<T>::buclesDFS(Nodo<T>* nodo) {
-    if (nodo->visitado)
-        return;
-    nodo->visitado = true;
-    cout << nodo->valor << " ";
-
-    for (Nodo<T>* adyacente : nodo->adyacentes) {
-        if (adyacente->visitado) {
-            cout << "Bucle encontrado" << endl;
-            return;
-        }
-        buclesDFS(adyacente);
-    }
-}
-
-template<typename T>
-bool Grafo<T>::existeBucle(T valor) {
-    // utilizando el DFS
-    Nodo<T>* nodo = buscarNodo(valor);
-    if (nodo != nullptr) {
-        // Reiniciar los visitados
-        for (Nodo<T>* nodo : nodos)
-            nodo->visitado = false;
-        buclesDFS(nodo);
-    }
-    return false;
-}
-
-int main() {
-    Grafo<char> grafo;
-
-    // Agregar nodos
-    grafo.agregarNodo('A');
-    grafo.agregarNodo('B');
-    grafo.agregarNodo('C');
-    grafo.agregarNodo('D');
-    grafo.agregarNodo('E');
-
-    // Agregar aristas
-    grafo.agregarArista('A', 'B');
-    grafo.agregarArista('A', 'C');
-    grafo.agregarArista('B', 'C');
-    grafo.agregarArista('B', 'D');
-    grafo.agregarArista('C', 'E');
-    
-    // Detectando ciclo en el grafo utilizando DFS
-    grafo.recorrerGrafoDFS('A');
-    grafo.existeBucle('A');             //  Salida: Bucle encontrado
-
-    return 0;
+    g.DFS('A'); // A C E B D
 }
