@@ -20,7 +20,7 @@ void DFS(vector<vector<char>>& laberinto, int x, int y, int fx, int fy){
     DFS(laberinto,x,y-1,fx,fy);
 }
 
-void ruta(vector<vector<char>>& laberinto, int x, int y, int fx, int fy){
+void marcar_meta(vector<vector<char>>& laberinto, int x, int y, int fx, int fy){
     DFS(laberinto,x,y,fx,fy);
     for(int i = 0; i < laberinto.size(); i++){
         for(int j = 0; j < laberinto[0].size(); j++)
@@ -38,5 +38,5 @@ int main(){
          {'X',' ','X',' ','F'},
          {' ',' ','X',' ','X'}};
     
-    ruta(laberinto,0,0,3,4);
+    marcar_meta(laberinto,0,0,3,4);
 }
