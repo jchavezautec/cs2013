@@ -75,5 +75,5 @@ int main(){
     g.nueva_arista("http://www.google.com","http://www.youtube.com");
     g.nueva_arista("http://www.google.com","http://utec.edu.pe");
 
-    g.BFS("http://www.google.com", 3);
+    g.BFS("http://www.google.com", 2);
 }
