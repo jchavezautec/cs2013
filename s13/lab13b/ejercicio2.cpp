@@ -164,7 +164,6 @@ void BST::eliminar(int x){
     Nodo* nodo = buscarNodo(x);
     eliminarAux(nodo, x);
 }
-
 void BST::eliminarAux(Nodo* nodo, int x){
     if (nodo == nullptr)
         return;
@@ -217,6 +216,6 @@ int main() {
 
     arbol.imprimirPreOrden(); // Salida: 50 30 20 10 5 40 60 70
     
-    arbol.eliminar(50);
-    arbol.imprimirPreOrden(); // Salida: 60 30 20 10 5 40 70
+    arbol.eliminar(20);
+    arbol.imprimirPreOrden();
 }

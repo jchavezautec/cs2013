@@ -20,15 +20,13 @@ void DFS(vector<vector<char>>& islas, int i, int j){
 
 int contar_islas(vector<vector<char>> islas){
     int cont = 0;
-
     // Para cada celda en el mapa
     for(int i = 0; i < islas.size(); i++){
         for(int j = 0; j < islas[0].size(); j++){
             // Si estamos dentro de una isla
             if (islas[i][j] == '1'){
                 cont++;
-                // Exploramos la isla y marcamos 
-                // todas las celdas como visitadas
+                // Exploramos la isla y marcamos todas las celdas como visitadas
                 DFS(islas,i,j);
             }
         }

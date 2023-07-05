@@ -54,7 +54,7 @@ int main(){
     g.nueva_arista('B','D');
     g.nueva_arista('C','E');
     g.nueva_arista('F','B');
-    g.nueva_arista('F','D');
+    //g.nueva_arista('F','D');
 
     //g.DFS('A');
     if (g.ciclosDFS('A','A'))   // ciclosDFS(nodo, padre)

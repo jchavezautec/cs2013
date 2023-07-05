@@ -36,6 +36,8 @@ int main(){
     g.nueva_arista('B','C');
     g.nueva_arista('B','D');
     g.nueva_arista('C','E');
-
+    g.nueva_arista('E','F');
+    g.nueva_arista('F','G');
+    g.nueva_arista('F','H');
     g.DFS('A'); // A C E B D
 }

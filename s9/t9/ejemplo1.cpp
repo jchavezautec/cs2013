@@ -9,7 +9,7 @@ mutex mtx;        // Mutex para sincronizar el acceso a counter
 
 void incrementar() {
     for (int i = 0; i < 100000; ++i) {
-        //lock_guard<mutex> lock(mtx);  // Lock the mutex
+        lock_guard<mutex> lock(mtx);  // Lock the mutex
         counter++;                    // Incrementar el contador de manera segura
     }
 }

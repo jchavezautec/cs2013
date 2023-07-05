@@ -205,6 +205,7 @@ int main() {
     BST arbol;
 
     // Insertar nodos en el árbol
+    /*
     arbol.insertarNodo(50);
     arbol.insertarNodo(30);
     arbol.insertarNodo(20);
@@ -212,7 +213,15 @@ int main() {
     arbol.insertarNodo(60);
     arbol.insertarNodo(10);
     arbol.insertarNodo(5);
-
+    */
+    arbol.insertarNodo(30);
+    arbol.insertarNodo(10);
+    arbol.insertarNodo(50);
+    arbol.insertarNodo(5);
+    arbol.insertarNodo(20);
+    arbol.insertarNodo(40);
+    arbol.insertarNodo(60);
+    
     cout << "Es un arbol AVL? " << arbol.esArbolAVL() << endl;
     // No es un arbol AVL
     
