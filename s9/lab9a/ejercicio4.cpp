@@ -14,8 +14,8 @@ struct Particula2D{
 
 void random_move(vector<Particula2D>& particulas, int height, int width){
     for(auto& p: particulas){
-        p.x += rand() % 3 - 1;  // -1, 0, 1
-        p.y += rand() % 3 - 1;  // -1, 0, 1
+        p.x += rand() % 5 - 2;  // -1, 0, 1
+        p.y += rand() % 5 - 2;  // -1, 0, 1
 
         if(p.x < 0) p.x = 0;                // Limites de la pantalla
         if(p.x >= width) p.x = width - 1; 
@@ -55,9 +55,10 @@ void sum(vector<Particula2D> vec, int inicio, int fin, Particula2D& res){
         x += vec[i].x;
         y += vec[i].y;
     }
-    lock_guard<mutex> lock(m);
+    m.lock();
     res.x += x;
     res.y += y;
+    m.unlock();
 }
 
 int main(){
@@ -66,7 +67,7 @@ int main(){
     int h  = 10, w = 70;
 
     generate(particulas.begin(), particulas.end(), [&](){
-        return Particula2D{rand() % w, rand() % h};
+        return Particula2D{w/2, h/2};
     });
 
     for(int i=0; i<1000000; i++){
