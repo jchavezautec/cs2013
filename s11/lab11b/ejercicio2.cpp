@@ -1,111 +1,70 @@
 #include <iostream>
-#include <string>
 #include <vector>
 
 using namespace std;
 
-// Clase que representa el estado del juego
-class EstadoJuego {
+class Memento {
 private:
-    string nombreNivel;
+    int Nivel;
     int posicionX;
     int posicionY;
 
 public:
-    EstadoJuego(const string& nombreNivel, int posicionX, int posicionY)
-        : nombreNivel(nombreNivel), posicionX(posicionX), posicionY(posicionY) {}
+  Memento(const int& Nivel_, int posicionX, int posicionY)
+        : Nivel(Nivel_), posicionX(posicionX), posicionY(posicionY) {}
 
-    string getNombreNivel() const {
-        return nombreNivel;
-    }
-
-    int getPosicionX() const {
-        return posicionX;
-    }
-
-    int getPosicionY() const {
-        return posicionY;
-    }
+    int getNombreNivel() const { return Nivel;}
+    int getPosicionX() const { return posicionX;}
+    int getPosicionY() const { return posicionY;}
 };
 
-// Clase que representa el Memento
-class Memento {
+
+class Personaje{
 private:
-    EstadoJuego estado;
-
+  string nombre;
+  int nivel=1;
+  int x=0, y=0;
+  vector<Memento*> estados;
 public:
-    Memento(const EstadoJuego& estado) : estado(estado) {}
-
-    EstadoJuego getEstado() const {
-        return estado;
+  Personaje(string n): nombre(n){}
+  void info(){
+    cout << "Nivel: " << nivel << ", Pos=(";
+    cout << x << ", " << y << ")"<< endl;
+  }
+  void guardarEstado(){
+    nivel = nivel + rand() % 4; // x puede crecer entre 0 y 3
+    x = x + rand() % 3; // x puede crecer entre 0 y 2
+    y = y + rand() % 3;  
+    estados.push_back(new Memento(nivel,x,y));
+  }
+  void ver_estados(){
+    for(int i=0; i<estados.size(); i++){
+      cout << "-------------------------" << "(" << i + 1 << ")" << endl;
+      cout << "Nivel: " << estados[i]->getNombreNivel() << endl;
+      cout << "\tX: " << estados[i]->getPosicionX() << endl;
+      cout << "\tY: " << estados[i]->getPosicionY() << endl;
     }
-};
-
-// Clase que representa el personaje del juego
-class Personaje {
-private:
-    string nombre;
-    int nivel;
-    int puntos;
-    vector<Memento*> mementos;
-
-public:
-    Personaje(const string& nombre, int nivel, int puntos)
-        : nombre(nombre), nivel(nivel), puntos(puntos) {}
-
-    string getNombre() const {
-        return nombre;
-    }
-
-    int getNivel() const {
-        return nivel;
-    }
-
-    int getPuntos() const {
-        return puntos;
-    }
-
-    void setEstado(const EstadoJuego& estado) {
-        // Guardar el estado del juego en el Memento
-        Memento* memento = new Memento(estado);
-        mementos.push_back(memento);
-    }
-
-    EstadoJuego getEstado() const {
-        // Restaurar el estado del juego desde el Memento
-        if (!mementos.empty()) {
-            Memento* memento = mementos.back();
-            return memento->getEstado();
-        }
-        // Si no hay mementos, retornar un estado predeterminado
-        return EstadoJuego("Nivel 1", 0, 0);
-    }
+  }
+  void setEstado(){
+    ver_estados();
+    int opcion;
+    cout << "\nElegir Opción: ";
+    cin >> opcion;
+    Memento* memento = estados[opcion-1];
+    nivel = memento->getNombreNivel();
+    x = memento->getPosicionX();
+    y = memento->getPosicionY();
+  }
 };
 
 int main() {
-    // Crear el personaje del juego
-    Personaje personaje("Heroe", 1, 0);
+  Personaje pj("Heroe");
 
-    // Jugar y avanzar en el juego
-    personaje.setEstado(EstadoJuego("Nivel 1", 10, 20));
+  pj.guardarEstado();
+  pj.guardarEstado();
+  pj.guardarEstado();
 
-    // Guardar el estado actual del juego
-    Memento* memento1 = new Memento(personaje.getEstado());
+  pj.setEstado();
 
-    // Jugar y avanzar en el juego
-    personaje.setEstado(EstadoJuego("Nivel 2", 30, 40));
-
-    // Guardar el estado actual del juego
-    Memento* memento2 = new Memento(personaje.getEstado());
-
-    // Restaurar el estado del juego al primer punto guardado
-    personaje.setEstado(memento1->getEstado());
-
-    cout << "Estado actual del juego: " << personaje.getEstado().getNombreNivel()
-        << ", Posicion: (" << personaje.getEstado().getPosicionX() << ", " << personaje.getEstado().getPosicionY() << ")" << endl;
-
-    delete memento1;
-    delete memento2;
-
-    return 0;
+  pj.info();
 }
