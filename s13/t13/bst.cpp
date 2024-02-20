@@ -176,7 +176,7 @@ int BST::sizeAux(Nodo* nodo) {
 
 // Función para obtener la altura del árbol
 int BST::height() {
-  return heightAux(raiz);
+  return heightAux(raiz)-1;
 }
 
 // Función auxiliar para obtener la altura del árbol
@@ -195,9 +195,11 @@ int main() {
     arbol.insertarNodo(20);
     arbol.insertarNodo(40);
     arbol.insertarNodo(60);
+    arbol.insertarNodo(70);
+    arbol.insertarNodo(65);
 
     // Buscar un nodo en el árbol
-    int datoBuscado = 40;
+    int datoBuscado = 10;
     Nodo* nodoBuscado = arbol.buscarNodo(datoBuscado);
 
     // Verificar si el nodo buscado se encontró o no

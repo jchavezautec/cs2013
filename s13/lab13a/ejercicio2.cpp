@@ -169,7 +169,7 @@ void BST::destruirArbol(Nodo* nodo) {
 
 // Altura del Arbol
 int BST::calcularAltura() {
-  return calcularAlturaAux(raiz);
+  return calcularAlturaAux(raiz)-1;
 }
 
 // Función auxiliar para calcular la altura de un nodo
